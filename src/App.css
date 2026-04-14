@@ -344,6 +344,15 @@ body {
   opacity: 1;
   transform: scale(1);
 }
+.intro,
+.section1,
+.section2,
+.section3,
+.section4 {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 @media (max-width: 768px) {
   .name_wed {
     font-size: 28px;
@@ -377,5 +386,14 @@ body {
     background-size: 100% auto;
     background-position: center;
     background-repeat: no-repeat;
+  }
+}
+@media (max-width: 768px) {
+  .intro,
+  .section1,
+  .section2,
+  .section3,
+  .section4 {
+    background-attachment: scroll;
   }
 }
