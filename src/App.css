@@ -368,3 +368,13 @@ body {
     background-attachment: scroll;
   }
 }
+@media (max-width: 768px) {
+  .intro,
+  .section1,
+  .section2,
+  .section3,
+  .section4 {
+    background-size: 85% auto;
+    background-position: center;
+  }
+}
