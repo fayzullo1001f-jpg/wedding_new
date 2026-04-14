@@ -374,7 +374,7 @@ body {
   .section2,
   .section3,
   .section4 {
-    background-size: 90% auto;
+    background-size: 100% auto;
     background-position: center;
     background-repeat: no-repeat;
   }
