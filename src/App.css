@@ -37,12 +37,7 @@ body {
 
 
   position: relative;
-
-
-
-
   background-image: url("./img/main.png");
-
   background-size: cover;
   background-position: center;
 }
@@ -360,5 +355,16 @@ body {
 
   .timer {
     font-size: 18px;
+  }
+}
+@media (max-width: 768px) {
+  .intro,
+  .section1,
+  .section2,
+  .section3,
+  .section4 {
+    background-size: cover;
+    background-position: top center;
+    background-attachment: scroll;
   }
 }
