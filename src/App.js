@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import "./App.css";
 
 import teleg from "./img/telegram-brands-solid-full.svg";
@@ -16,7 +16,8 @@ function App() {
 
   const weddingDate = new Date(2026, 4, 1, 18, 0, 0).getTime();
 
-  const startMusic = async () => {
+  // 🎵 MUSIC START
+  const startMusic = useCallback(async () => {
     const audio = audioRef.current;
     if (!audio || musicStarted) return;
 
@@ -26,8 +27,9 @@ function App() {
     } catch (err) {
       console.log("Music blocked");
     }
-  };
+  }, [musicStarted]);
 
+  // 🎯 user interaction (music start fix)
   useEffect(() => {
     const handleStart = () => startMusic();
 
@@ -38,8 +40,9 @@ function App() {
       window.removeEventListener("click", handleStart);
       window.removeEventListener("scroll", handleStart);
     };
-  }, [musicStarted]);
+  }, [musicStarted, startMusic]);
 
+  // ⏳ COUNTDOWN
   useEffect(() => {
     const interval = setInterval(() => {
       const now = new Date().getTime();
@@ -61,8 +64,9 @@ function App() {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [weddingDate]);
 
+  // 📍 SCROLL ANIMATION + MAP
   useEffect(() => {
     const observer = new IntersectionObserver(
         (entries) => {
@@ -105,15 +109,19 @@ function App() {
 
         {/* SECTION 1 */}
         <section className="section section1">
-          <div className="container hidden" data-index="0" ref={(el) => (sectionsRef.current[0] = el)}>
+          <div
+              className="container hidden"
+              data-index="0"
+              ref={(el) => (sectionsRef.current[0] = el)}
+          >
             <h2>💍 TO'Y TAKLIFNOMASI</h2>
 
             <p>
               Assalomu alaykum! Hurmatli va aziz mehmonimiz 💖<br /><br />
               Sizni hayotimizning eng baxtli kunlaridan biri — farzandlarimizning
               nikoh to‘y marosimiga chin qalbimizdan taklif etamiz.<br /><br />
-              Sizning ishtirokingiz ushbu quvonchli kunimizni yanada yorqin va unutilmas qiladi.
-              Birga quvonch ulashishni intiqlik bilan kutamiz ✨
+              Sizning ishtirokingiz ushbu quvonchli kunimizni yanada yorqin va
+              unutilmas qiladi. Birga quvonch ulashishni intiqlik bilan kutamiz ✨
             </p>
 
             <h3 className="timer">⏳ {timeLeft}</h3>
@@ -122,7 +130,11 @@ function App() {
 
         {/* SECTION 2 */}
         <section className="section section2">
-          <div className="container hidden" data-index="1" ref={(el) => (sectionsRef.current[1] = el)}>
+          <div
+              className="container hidden"
+              data-index="1"
+              ref={(el) => (sectionsRef.current[1] = el)}
+          >
             <h2>📍 Manzil</h2>
 
             {showMap && (
@@ -136,12 +148,16 @@ function App() {
           </div>
         </section>
 
-        {/* SECTION 4 (bo‘sh qoldirildi) */}
+        {/* SECTION 4 */}
         <section className="section section4"></section>
 
         {/* SECTION 3 */}
         <section className="section section3">
-          <div className="container hidden" data-index="2" ref={(el) => (sectionsRef.current[2] = el)}>
+          <div
+              className="container hidden"
+              data-index="2"
+              ref={(el) => (sectionsRef.current[2] = el)}
+          >
             <h2>❤️ Sizni kutamiz</h2>
             <h2>Murojat: +998-99-123-45-67</h2>
             <h2>Manzil: Grand Hall restaurant</h2>
