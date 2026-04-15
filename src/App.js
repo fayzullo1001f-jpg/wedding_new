@@ -186,9 +186,9 @@ function App() {
             <h2>Manzil: Grand Hall restaurant</h2>
             <h2>Mo'ljal: Yunusobod 13</h2>
 
-            <img className="teleg" src={teleg} alt="" />
-            <img className="ins" src={instagram} alt="" />
-            <img className="ins" src={face} alt="" />
+            {/*<img className="teleg" src={teleg} alt="" />*/}
+            {/*<img className="ins" src={instagram} alt="" />*/}
+            {/*<img className="ins" src={face} alt="" />*/}
           </div>
         </section>
       </>
