@@ -136,14 +136,37 @@ function App() {
               ref={(el) => (sectionsRef.current[1] = el)}
           >
             <h2>📍 Manzil</h2>
-
             {showMap && (
-                <iframe
-                    title="map"
-                    src="https://www.google.com/maps?q=Grand%20Hall%20Tashkent&output=embed"
-                    width="100%"
-                    height="300"
-                />
+                <div style={{ position: "relative" ,  borderRadius: "20px"}}>
+                  <iframe
+                      title="map"
+                      src="https://www.google.com/maps?q=Grand%20Hall%20Tashkent&output=embed"
+                      width="100%"
+                      height="300"
+                      style={{ border: 0 }}
+                  />
+
+                  {/* overlay */}
+                  <div
+                      onClick={() =>
+                          window.open(
+                              "https://www.google.com/maps?q=Grand+Hall+Tashkent",
+                              "_blank"
+                          )
+                      }
+                      style={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        height: "100%",
+                        cursor: "pointer",
+                        zIndex: 10,              // 🔥 ENG MUHIM
+                        background: "transparent"
+
+                      }}
+                  />
+                </div>
             )}
           </div>
         </section>
