@@ -1,409 +1,369 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;  /* faqat gorizontal scroll yo‘q */
-}
-
-/* scroll barni yashirish */
-body::-webkit-scrollbar {
-  display: none;
-}
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300&display=swap');
 
 body {
-  -ms-overflow-style: none;  /* IE */
-  scrollbar-width: none;      /* Firefox */
-}
-body {
   margin: 0;
-  font-family: sans-serif;
-
-  background-size: cover;
-  background-position: center;
-
-  background-attachment: fixed;
+  background: #f8f6f3;
+  font-family: 'Montserrat', sans-serif;
+  color: #222;
 }
 
+.app {
+  max-width: 420px;
+  margin: auto;
+  background: white;
+}
 
-.intro {
-  width: 100%;
+/* HERO */
+.hero {
   height: 100vh;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
   text-align: center;
-
-
-  position: relative;
-  background-image: url("./img/main.png");
+  background-image: url("./img/one.webp");
   background-size: cover;
   background-position: center;
-}
 
-
-.name_wedding {
-  width: 350px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-
-.name_wed,
-.name_we,
-.name_date {
-  color: gold;
-  opacity: 0;
-  font-family: "Great Vibes", cursive;
-}
-
-.name_men,
-.class_name,
-.name_woman {
-  color: blueviolet;
-  opacity: 0;
-  animation: dropDown 1.5s forwards;
-  font-family: "Great Vibes", cursive;
-}
-.name_men { animation-delay: 0.3s; }
-.class_name { animation-delay: 0.8s; }
-.name_woman { animation-delay: 1.3s; }
-
-
-.name_wed,
-.name_we {
-  animation: slideFromLeft 1.5s forwards;
-  animation-delay: 1.8s;
-}
-
-
-.name_date {
-  animation: slideFromRight 1.5s forwards;
-  animation-delay: 2.3s;
-}
-
-@keyframes dropDown {
-  from { transform: translateY(-200px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-@keyframes slideFromLeft {
-  from { transform: translateX(-300px); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
-}
-
-@keyframes slideFromRight {
-  from { transform: translateX(300px); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
-}
-
-
-.section1 {
-  min-height: 100vh;
-  padding: 50px;
-
-  background-image: url("./img/section2.png");
-
-  background-size: cover;
-}.section2 {
-   min-height: 100vh;
-   padding: 50px;
-
-
-   background-image: url("./img/section3.png");
-
-   background-size: cover;
- }.section4 {
-    min-height: 100vh;
-    padding: 50px;
-
-    background-image: url("./img/section4.png");
-
-    background-size: cover;
-  }.section3 {
-     min-height: 100vh;
-     padding: 50px;
-
-     background-image: url("./img/section5.png");
-
-     background-size: cover;
-   }
-
-
-.container {
-  max-width: 500px;
-  margin: 50px auto;
-  padding: 50px;
-
-  border-radius: 25px;
-
-  color: blue;
-  text-align: center;
-
+  color: white;
   position: relative;
-}
-
-.container p {
-  font-family: "Playfair Display", serif;;
-}
-.container h1 {
-  font-family: "Great Vibes", cursive;
-}
-
-
-.container::before {
-  content: "";
-  position: absolute;
-  inset: -10px;
-  border-radius: 30px;
-
-}
-
-.container::after {
-  content: "";
-  position: absolute;
-  inset: 5px;
-  border-radius: 20px;
-
-}
-
-
-.timer {
-  font-size: 36px;
-  font-weight: bold;
-  color: goldenrod;
-}
-
-.hearts {
-  margin-top: 20px;
-  font-size: 24px;
-  animation: float 2s infinite alternate;
-}
-
-@keyframes float {
-  from { transform: translateY(0); }
-  to { transform: translateY(-10px); }
-}
-
-.header {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.intro {
-  text-align: center;
-}
-
-.name_wed,
-.name_men,
-.class_name,
-.name_woman,
-.name_date {
-  font-family: "Great Vibes", cursive;
-  color: #6a1b9a;
-  margin: 10px 0;
-  animation: fadeUp 2s ease forwards;
-  opacity: 0;
-}
-
-.name_men { animation-delay: 0.5s; }
-.class_name { animation-delay: 1s; }
-.name_woman { animation-delay: 1.5s; }
-.name_date { animation-delay: 2s; }
-
-@keyframes fadeUp {
-  from {
-    transform: translateY(50px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-.section {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px 20px;
-}
-
-.container {
-  max-width: 450px;
-  width: 100%;
-  max-height: 450px;
-  padding: 40px;
-  border-radius: 20px;
-
-  color: blue;
-  text-align: center;
-
-}
-
-
-.timer {
-  font-size: 24px;
-  color: #ff0000;
-  font-weight: bold;
-}
-
-
-.map {
-  margin-top: 15px;
-  border-radius: 15px;
   overflow: hidden;
 }
 
-.hearts {
-  font-size: 30px;
+/* 🔥 BLUR + DARK OVERLAY */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  backdrop-filter: blur(1.5px);
+  background: rgba(0, 0, 0, 0.3);
+
+  z-index: 0;
+}
+
+
+.hero * {
+  position: relative;
+  z-index: 1;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  margin: 5px 0;
+  letter-spacing: 2px;
+}
+
+.hero span {
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.date {
+  margin-top: 15px;
+  font-size: 18px;
+  color: #f4f5f4;
+}
+.music img{
+  width: 40px;
+  height: 40px;
+}
+
+.scroll {
+  margin-top: 40px;
+  font-size: 12px;
+  color: #aaa;
+}
+
+/* SECTION */
+.section {
+  padding: 60px 25px;
+  text-align: center;
+  border-top: 1px solid #eee;
+}
+
+.section h2 {
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.section p {
+  line-height: 1.6;
+  color: #555;
+}
+
+/* TIMER */
+.timer {
   margin-top: 20px;
-  animation: float 2s infinite alternate;
+  font-size: 23px;
+  color: #999;
 }
 
-@keyframes float {
-  from { transform: translateY(0); }
-  to { transform: translateY(-10px); }
-}
-.hidden {
-  opacity: 0;
-  transform: translateY(80px);
-  transition: all 1s ease;
-}
-
-.show {
-  opacity: 1;
-  transform: translateY(0);
+/* MAP */
+.map {
+  margin-top: 25px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.header {
-  height: 100vh;
+.map:hover {
+  background: #f3f1ee;
+}
+
+/* MOBILE */
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 28px;
+  }
+}
+.music {
+  width: 43px;
+  height: 43px;
+  margin: 0 auto 20px;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: zoomIn 2s ease;
+
+  border-radius: 50%;
+  border: 1px solid #ddd;
+
+  cursor: pointer;
+  font-size: 20px;
+
+  transition: 0.3s;
 }
 
-@keyframes zoomIn {
-  from {
-    transform: scale(1.2);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
+.music:hover {
+  background: #f3f1ee;
+  transform: scale(1.05);
+}
+.music_p{
+  font-size: 13px;
+  color: #aaa;
+  position: relative;
+  top: -13px;
+}
+.line{
+  width: 230px;
+  height: 2px;
+  background-color: darkblue;
+  border-radius: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  left: 70px;
+}
+.cake{
+  width: 250px;
+  height: 150px;
+  border-radius: 15px;
 }
 
-.container {
-  transition: transform 0.5s ease, box-shadow 0.5s ease;
+
+/* CALENDAR */
+.calendar {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 20px;
+
+  background: #faf9f7;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 
-.container:hover {
-  transform: scale(1.02);
-  box-shadow: 0 0 30px rgba(0,0,0,0.4);
+.cal-header {
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 15px;
+  letter-spacing: 2px;
+}
+
+/* GRID */
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+/* WEEK DAYS */
+.day-name {
+  font-size: 12px;
+  color: #aaa;
+}
+
+/* DAYS */
+.day {
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  transition: 0.3s;
 }
 
 
-.hearts {
-  font-size: 30px;
-  animation: float 2s infinite alternate, pulse 1.5s infinite;
+.day.active {
+  background: #040964;
+  color: #fff;
+  font-weight: bold;
+  transform: scale(1.1);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-@keyframes float {
-  from { transform: translateY(0); }
-  to { transform: translateY(-10px); }
+/* HOVER */
+.day:hover {
+  background: #040964;
+  cursor: pointer;
+  color: white;
+}
+.wedl{
+  color: #040964;
+}
+.day.active {
+  animation: pulse 1.5s infinite;
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); }
+  0% { transform: scale(1.1); }
   50% { transform: scale(1.2); }
-  100% { transform: scale(1); }
+  100% { transform: scale(1.1); }
 }
-.teleg, .ins, .face{
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-}
-.map {
-  margin-top: 15px;
-  border-radius: 15px;
+/* CARD */
+.location-card {
+  margin-top: 20px;
+  border-radius: 20px;
   overflow: hidden;
 
-  opacity: 0;
-  transform: scale(0.9);
-  transition: 0.8s;
+  background: #fff;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
 }
 
-.map.show {
-  opacity: 1;
-  transform: scale(1);
+/* MAP */
+.map-preview iframe {
+  width: 100%;
+  height: 200px;
+  border: none;
 }
-.intro,
-.section1,
-.section2,
-.section3,
-.section4 {
+
+/* INFO */
+.location-info {
+  padding: 20px;
+  text-align: center;
+}
+
+.location-info h3 {
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 5px;
+}
+
+.location-info p {
+  color: #777;
+  font-size: 14px;
+}
+
+/* BUTTON */
+.location-info button {
+  margin-top: 15px;
+  padding: 10px 20px;
+
+  border: none;
+  border-radius: 25px;
+
+  background: #040964;
+  color: white;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.location-info button:hover {
+  background: #4152c5;
+}
+.restaurant{
+  width: 300px;
+  height: 200px;
+  border-radius: 20px;
+}
+.wedding_len{
+  font-size: 19px;
+  color: #737171;
+}
+/* TIMELINE */
+/* TIMELINE */
+.timeline {
+  margin-top: 20px;
+  position: relative;
+  padding-left: 20px;
+  left: 70px;
+  top: 35px;
+}
+.ser{
+  position: relative;
+  top: 20px;
+  left: 25px;
+}
+.sec{
+  background-image: url("https://i.pinimg.com/736x/fc/ac/93/fcac932456b1f8566b7b7ed873b5714a.jpg");
+}
+
+.sec4{
+  background-image: url("./img/2122974ae6d63ea519b3d48eacebe88f.jpg");
+}
+/* vertical line */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #ddd;
+}
+
+/* item */
+.time-item {
+  position: relative;
+  margin-bottom: 25px;
+  text-align: left;
+  padding-left: 20px;
+}
+
+/* dot */
+.time-item::before {
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: 5px;
+  width: 10px;
+  height: 10px;
+  background: black;
+  border-radius: 50%;
+}
+
+/* time */
+.time {
+  font-weight: bold;
+  font-size: 14px;
+  color: #000;
+}
+
+/* event */
+.event {
+  font-size: 14px;
+  color: #666;
+  margin-top: 3px;
+}
+.wed_day{
+  color: #040964;
+  position: relative;
+  top: 25px;
+  left: 30px;
+}
+.sec4{
+  background-image: url("./img/31c4853a06eb900659756f94d51470ad.jpg");
   background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-@media (max-width: 768px) {
-  .name_wed {
-    font-size: 28px;
-  }
-
-  .container {
-    padding: 20px;
-  }
-
-  .timer {
-    font-size: 18px;
-  }
-}
-@media (max-width: 768px) {
-  .intro,
-  .section1,
-  .section2,
-  .section3,
-  .section4 {
-    background-size: cover;
-    background-position: top center;
-    background-attachment: scroll;
-  }
-}
-@media (max-width: 768px) {
-  .intro,
-  .section1,
-  .section2,
-  .section3,
-  .section4 {
-    background-size: 100% auto;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-}
-@media (max-width: 768px) {
-  .intro,
-  .section1,
-  .section2,
-  .section3,
-  .section4 {
-    background-attachment: scroll;
-  }
-}
-@media (max-width: 768px) {
-  .intro,
-  .section1,
-  .section2,
-  .section3,
-  .section4 {
-    background-size: auto 100%;
-    background-position: center;
-  }
 }

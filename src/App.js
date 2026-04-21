@@ -1,198 +1,203 @@
-import React, { useEffect, useState, useRef, useCallback } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import { motion } from "framer-motion";
 import "./App.css";
 
-import teleg from "./img/telegram-brands-solid-full.svg";
-import instagram from "./img/instagram-brands-solid-full.svg";
-import face from "./img/facebook-brands-solid-full.svg";
 import musicFile from "./music/music_for_videos-wedding-march-music-box-163683 (1).mp3";
+import play from "./img/circle-play-solid-full.svg";
+import pause from "./img/circle-pause-solid-full.svg";
+import cake from "./img/afec371b0d00-wedding-cake-t.webp";
+import restaurant from "./img/2774127.f80979f42a4b357703de1f25eaa02d87.jpg";
 
 function App() {
-  const [timeLeft, setTimeLeft] = useState("");
-  const [showMap, setShowMap] = useState(false);
-  const [musicStarted, setMusicStarted] = useState(false);
+    const [timeLeft, setTimeLeft] = useState("");
+    const [isPlaying, setIsPlaying] = useState(false);
+    const audioRef = useRef(null);
 
-  const audioRef = useRef(null);
-  const sectionsRef = useRef([]);
+    const weddingDate = new Date(2026, 4, 1, 18, 0, 0).getTime();
 
-  const weddingDate = new Date(2026, 4, 1, 18, 0, 0).getTime();
+    // TIMER
+    useEffect(() => {
+        const interval = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
 
-  // 🎵 MUSIC START
-  const startMusic = useCallback(async () => {
-    const audio = audioRef.current;
-    if (!audio || musicStarted) return;
+            if (distance < 0) {
+                setTimeLeft("Boshlanmoqda 🎉");
+                clearInterval(interval);
+            } else {
+                const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const h = Math.floor((distance / (1000 * 60 * 60)) % 24);
+                const m = Math.floor((distance / (1000 * 60)) % 60);
 
-    try {
-      await audio.play();
-      setMusicStarted(true);
-    } catch (err) {
-      console.log("Music blocked");
-    }
-  }, [musicStarted]);
-
-  // 🎯 user interaction (music start fix)
-  useEffect(() => {
-    const handleStart = () => startMusic();
-
-    window.addEventListener("click", handleStart);
-    window.addEventListener("scroll", handleStart);
-
-    return () => {
-      window.removeEventListener("click", handleStart);
-      window.removeEventListener("scroll", handleStart);
-    };
-  }, [musicStarted, startMusic]);
-
-  // ⏳ COUNTDOWN
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = weddingDate - now;
-
-      if (distance < 0) {
-        setTimeLeft("Tadbir boshlandi 🎉");
-        clearInterval(interval);
-      } else {
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((distance / (1000 * 60)) % 60);
-        const seconds = Math.floor((distance / 1000) % 60);
-
-        setTimeLeft(
-            `${days} kun ${hours} soat ${minutes} daqiqa ${seconds} sekund`
-        );
-      }
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [weddingDate]);
-
-  // 📍 SCROLL ANIMATION + MAP
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("show");
-
-              if (entry.target.dataset.index === "1") {
-                setShowMap(true);
-              }
+                setTimeLeft(`${d} kun • ${h} soat • ${m} min`);
             }
-          });
-        },
-        { threshold: 0.3 }
-    );
+        }, 1000);
 
-    sectionsRef.current.forEach((el) => {
-      if (el) observer.observe(el);
-    });
+        return () => clearInterval(interval);
+    }, []);
 
-    return () => observer.disconnect();
-  }, []);
+    const toggleMusic = () => {
+        const audio = audioRef.current;
+        if (!audio) return;
 
-  return (
-      <>
-        {/* HEADER */}
-        <header className="header">
-          <div className="intro">
-            <h1 className="name_wed">WEDDING DAY</h1>
-            <h1 className="name_men">SHAXZOD</h1>
-            <h1 className="class_name">&</h1>
-            <h1 className="name_woman">MARJONA</h1>
-            <h1 className="name_date">01.05.2026</h1>
+        if (isPlaying) audio.pause();
+        else audio.play();
 
+        setIsPlaying(!isPlaying);
+    };
+
+    const fadeUp = {
+        hidden: { opacity: 0, y: 60, scale: 0.95 },
+        show: {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            transition: { duration: 0.7, ease: "easeOut" }
+        }
+    };
+
+    return (
+        <div className="app">
+
+            {/* AUDIO */}
             <audio ref={audioRef} loop>
-              <source src={musicFile} type="audio/mp3" />
+                <source src={musicFile} type="audio/mp3" />
             </audio>
-          </div>
-        </header>
 
-        {/* SECTION 1 */}
-        <section className="section section1">
-          <div
-              className="container hidden"
-              data-index="0"
-              ref={(el) => (sectionsRef.current[0] = el)}
-          >
-            <h2>💍 TO'Y TAKLIFNOMASI</h2>
+            {/* HERO */}
+            <motion.section className="hero" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                <motion.h1 initial={{ y: -40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.2 }}>
+                    SHAXZOD
+                </motion.h1>
 
-            <p>
-              Assalomu alaykum! Hurmatli va aziz mehmonimiz 💖<br /><br />
-              Sizni hayotimizning eng baxtli kunlaridan biri — farzandlarimizning
-              nikoh to‘y marosimiga chin qalbimizdan taklif etamiz.<br /><br />
-              Sizning ishtirokingiz ushbu quvonchli kunimizni yanada yorqin va
-              unutilmas qiladi. Birga quvonch ulashishni intiqlik bilan kutamiz ✨
-            </p>
+                <motion.span initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.4 }}>
+                    &
+                </motion.span>
 
-            <h3 className="timer">⏳ {timeLeft}</h3>
-          </div>
-        </section>
+                <motion.h1 initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.6 }}>
+                    MARJONA
+                </motion.h1>
 
-        {/* SECTION 2 */}
-        <section className="section section2">
-          <div
-              className="container hidden"
-              data-index="1"
-              ref={(el) => (sectionsRef.current[1] = el)}
-          >
-            <h2>📍 Manzil</h2>
-            {showMap && (
-                <div style={{ position: "relative" ,  borderRadius: "20px"}}>
-                  <iframe
-                      title="map"
-                      src="https://www.google.com/maps?q=Grand%20Hall%20Tashkent&output=embed"
-                      width="100%"
-                      height="300"
-                      style={{ border: 0 }}
-                  />
+                <motion.p className="date" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }}>
+                    01 MAY 2026
+                </motion.p>
 
-                  {/* overlay */}
-                  <div
-                      onClick={() =>
-                          window.open(
-                              "https://www.google.com/maps?q=Grand+Hall+Tashkent",
-                              "_blank"
-                          )
-                      }
-                      style={{
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        width: "100%",
-                        height: "100%",
-                        cursor: "pointer",
-                        zIndex: 10,              // 🔥 ENG MUHIM
-                        background: "transparent"
+                <motion.div
+                    className="scroll"
+                    animate={{ y: [0, 10, 0] }}
+                    transition={{ repeat: Infinity, duration: 2 }}
+                >
+                    ↓ scroll
+                </motion.div>
+            </motion.section>
 
-                      }}
-                  />
+            {/* INFO */}
+            <motion.section className="section sec" variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
+                <motion.div className={`music ${isPlaying ? "playing" : ""}`} onClick={toggleMusic} whileTap={{ scale: 0.9 }}>
+                    <img src={isPlaying ? pause : play} alt="music" />
+                </motion.div>
+
+                <p className="music_p">Musiqa</p>
+
+                <h2>TO‘Y TAKLIFNOMASI</h2>
+                <p>Sizni hayotimizdagi eng muhim kunga taklif qilamiz. Ushbu quvonchli lahzani siz bilan baham ko‘rish biz uchun sharaf..</p>
+
+                <div className="line"></div>
+
+                <motion.div
+                    key={timeLeft}
+                    className="timer"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                >
+                    {timeLeft}
+                </motion.div>
+            </motion.section>
+
+            {/* WEDDING DAY */}
+            <motion.section className="section sec" variants={fadeUp} initial="hidden" whileInView="show">
+
+                <h2>WEDDING DAY</h2>
+
+                <motion.img
+                    className="cake"
+                    src={cake}
+                    alt=""
+                    animate={{ y: [0, -10, 0] }}
+                    transition={{ repeat: Infinity, duration: 3 }}
+                />
+
+                <div className="calendar">
+                    <div className="cal-header">MAY 2026</div>
+
+                    <div className="cal-grid">
+                        {["Du", "Se", "Cho", "Pa", "Ju", "Sha", "Yak"].map(d => (
+                            <div key={d} className="day-name">{d}</div>
+                        ))}
+
+                        {[...Array(4)].map((_, i) => <div key={i}></div>)}
+
+                        {Array.from({ length: 31 }, (_, i) => (
+                            <div key={i} className={`day ${i + 1 === 1 ? "active" : ""}`}>
+                                {i + 1}
+                            </div>
+                        ))}
+                    </div>
                 </div>
-            )}
-          </div>
-        </section>
+            </motion.section>
 
-        {/* SECTION 4 */}
-        <section className="section section4"></section>
+            {/* LOCATION */}
+            <motion.section className="section sec" variants={fadeUp} initial="hidden" whileInView="show">
 
-        {/* SECTION 3 */}
-        <section className="section section3">
-          <div
-              className="container hidden"
-              data-index="2"
-              ref={(el) => (sectionsRef.current[2] = el)}
-          >
-            <h2>❤️ Sizni kutamiz</h2>
-            <h2>Murojat: +998-99-123-45-67</h2>
-            <h2>Manzil: Grand Hall restaurant</h2>
-            <h2>Mo'ljal: Yunusobod 13</h2>
+                <h2>LOKATSIYA</h2>
 
-            {/*<img className="teleg" src={teleg} alt="" />*/}
-            {/*<img className="ins" src={instagram} alt="" />*/}
-            {/*<img className="ins" src={face} alt="" />*/}
-          </div>
-        </section>
-      </>
-  );
+                <motion.div className="location-card" whileHover={{ y: -8, scale: 1.01 }}>
+
+                    <div className="map-preview">
+                        <iframe
+                            title="map"
+                            src="https://www.google.com/maps?q=Grand%20Hall%20Tashkent&output=embed"
+                        />
+                    </div>
+
+                    <div className="location-info">
+                        <h3>Grand Hall</h3>
+                        <p>Toshkent</p>
+
+                        <img className="restaurant" src={restaurant} alt="" />
+
+                        <button onClick={() => window.open("https://www.google.com/maps?q=Grand+Hall+Tashkent")}>
+                            📍 Open Map
+                        </button>
+                    </div>
+
+                </motion.div>
+            </motion.section>
+
+            {/* TIMELINE */}
+            <motion.section className="section sec4" variants={fadeUp} initial="hidden" whileInView="show">
+
+                <h2 className="ser">TO‘Y DASTURI</h2>
+
+                <div className="timeline">
+                    <div className="time-item"><div className="time">17:00</div><div>Mehmonlar</div></div>
+                    <div className="time-item"><div className="time">18:00</div><div>Boshlanish</div></div>
+                    <div className="time-item"><div className="time">19:00</div><div>Marosim</div></div>
+                    <div className="time-item"><div className="time">22:00</div><div>Tort 🎂</div></div>
+                </div>
+
+            </motion.section>
+
+            {/* FOOTER */}
+            <motion.section className="section" variants={fadeUp} initial="hidden" whileInView="show">
+
+                <h2>Sizni kutamiz ❤️</h2>
+                <p>+998 99 123 45 67</p>
+
+            </motion.section>
+
+        </div>
+    );
 }
 
 export default App;
