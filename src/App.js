@@ -15,8 +15,9 @@ function App() {
 
     const weddingDate = new Date(2026, 4, 1, 18, 0, 0).getTime();
 
-    // TIMER
     useEffect(() => {
+        const weddingDate = new Date(2026, 4, 1, 18, 0, 0).getTime();
+
         const interval = setInterval(() => {
             const now = new Date().getTime();
             const distance = weddingDate - now;
