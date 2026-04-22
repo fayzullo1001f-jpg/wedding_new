@@ -367,3 +367,45 @@ body {
   background-image: url("./img/31c4853a06eb900659756f94d51470ad.jpg");
   background-size: cover;
 }
+/* smooth global animation */
+* {
+  transition: all 0.3s ease;
+}
+
+/* music click effect */
+.music.playing {
+  background: #040964;
+  transform: scale(1.1);
+}
+
+/* smooth hover for images */
+.cake, .restaurant {
+  transition: transform 0.4s ease;
+}
+
+.cake:hover,
+.restaurant:hover {
+  transform: scale(1.05);
+}
+.timer {
+  margin-top: 20px;
+  font-size: 22px;
+  color: #040964;
+
+  padding: 10px 15px;
+  border-radius: 12px;
+  display: inline-block;
+  box-shadow: 0 10px 25px rgba(4, 9, 100, 0.3);
+}
+
+.music.playing {
+  background: #040964;
+  transform: scale(1.1);
+}
+.ring{
+  width: 200px;
+  height: 150px;
+  border-radius: 20px;
+  position: relative;
+  top: 40px;
+}
