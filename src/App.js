@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useMemo } from "react";
 import { motion } from "framer-motion";
 import "./App.css";
 
@@ -13,11 +13,14 @@ function App() {
     const [isPlaying, setIsPlaying] = useState(false);
     const audioRef = useRef(null);
 
-    const weddingDate = new Date(2026, 4, 1, 18, 0, 0).getTime();
+    // ✅ weddingDate endi stable (eslint xato bermaydi)
+    const weddingDate = useMemo(
+        () => new Date(2026, 4, 1, 18, 0, 0).getTime(),
+        []
+    );
 
+    // ✅ countdown fix
     useEffect(() => {
-        const weddingDate = new Date(2026, 4, 1, 18, 0, 0).getTime();
-
         const interval = setInterval(() => {
             const now = new Date().getTime();
             const distance = weddingDate - now;
@@ -35,8 +38,9 @@ function App() {
         }, 1000);
 
         return () => clearInterval(interval);
-    }, []);
+    }, [weddingDate]);
 
+    // ✅ music toggle (clean)
     const toggleMusic = () => {
         const audio = audioRef.current;
         if (!audio) return;
@@ -44,7 +48,7 @@ function App() {
         if (isPlaying) audio.pause();
         else audio.play();
 
-        setIsPlaying(!isPlaying);
+        setIsPlaying(prev => !prev);
     };
 
     const fadeUp = {
@@ -94,14 +98,21 @@ function App() {
 
             {/* INFO */}
             <motion.section className="section sec" variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
-                <motion.div className={`music ${isPlaying ? "playing" : ""}`} onClick={toggleMusic} whileTap={{ scale: 0.9 }}>
+                <motion.div
+                    className={`music ${isPlaying ? "playing" : ""}`}
+                    onClick={toggleMusic}
+                    whileTap={{ scale: 0.9 }}
+                >
                     <img src={isPlaying ? pause : play} alt="music" />
                 </motion.div>
 
                 <p className="music_p">Musiqa</p>
 
                 <h2>TO‘Y TAKLIFNOMASI</h2>
-                <p>Sizni hayotimizdagi eng muhim kunga taklif qilamiz. Ushbu quvonchli lahzani siz bilan baham ko‘rish biz uchun sharaf..</p>
+                <p>
+                    Sizni hayotimizdagi eng muhim kunga taklif qilamiz.
+                    Ushbu quvonchli lahzani siz bilan baham ko‘rish biz uchun sharaf.
+                </p>
 
                 <div className="line"></div>
 
@@ -117,13 +128,12 @@ function App() {
 
             {/* WEDDING DAY */}
             <motion.section className="section sec" variants={fadeUp} initial="hidden" whileInView="show">
-
                 <h2>WEDDING DAY</h2>
 
                 <motion.img
                     className="cake"
                     src={cake}
-                    alt=""
+                    alt="cake"
                     animate={{ y: [0, -10, 0] }}
                     transition={{ repeat: Infinity, duration: 3 }}
                 />
@@ -149,11 +159,9 @@ function App() {
 
             {/* LOCATION */}
             <motion.section className="section sec" variants={fadeUp} initial="hidden" whileInView="show">
-
                 <h2>LOKATSIYA</h2>
 
                 <motion.div className="location-card" whileHover={{ y: -8, scale: 1.01 }}>
-
                     <div className="map-preview">
                         <iframe
                             title="map"
@@ -165,19 +173,17 @@ function App() {
                         <h3>Grand Hall</h3>
                         <p>Toshkent</p>
 
-                        <img className="restaurant" src={restaurant} alt="" />
+                        <img className="restaurant" src={restaurant} alt="restaurant" />
 
                         <button onClick={() => window.open("https://www.google.com/maps?q=Grand+Hall+Tashkent")}>
                             📍 Open Map
                         </button>
                     </div>
-
                 </motion.div>
             </motion.section>
 
             {/* TIMELINE */}
             <motion.section className="section sec4" variants={fadeUp} initial="hidden" whileInView="show">
-
                 <h2 className="ser">TO‘Y DASTURI</h2>
 
                 <div className="timeline">
@@ -186,15 +192,12 @@ function App() {
                     <div className="time-item"><div className="time">19:00</div><div>Marosim</div></div>
                     <div className="time-item"><div className="time">22:00</div><div>Tort 🎂</div></div>
                 </div>
-
             </motion.section>
 
             {/* FOOTER */}
             <motion.section className="section" variants={fadeUp} initial="hidden" whileInView="show">
-
                 <h2>Sizni kutamiz ❤️</h2>
                 <p>+998 99 123 45 67</p>
-
             </motion.section>
 
         </div>
