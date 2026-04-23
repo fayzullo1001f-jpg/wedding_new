@@ -147,7 +147,7 @@ function App() {
                     Shaxzod va Marjonalarning nikoh to'ylari munosabati bilan 1-may kuni taklif etamiz
                 </motion.p>
 
-                <div className="line"></div>
+
 
                 {/* ✨ TIMER ANIMATION */}
                 <motion.div
@@ -270,7 +270,7 @@ function App() {
             </motion.section>
 
             {/* FOOTER */}
-            <motion.section className="section sec" variants={fadeUp} initial="hidden" whileInView="show">
+            <motion.section className="section sec footer" variants={fadeUp} initial="hidden" whileInView="show">
 
                 <h1>Shaxzod & Marjona</h1>
 
