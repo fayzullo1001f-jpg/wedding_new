@@ -416,3 +416,9 @@ body {
   border-radius: 100px 100px 0 0;
   border: 2px solid #040964;
 }
+.sec {
+  background-image: url("https://i.pinimg.com/736x/fc/ac/93/fcac932456b1f8566b7b7ed873b5714a.jpg");
+  background-size: cover;       /* 🔥 MUHIM */
+  background-position: center;  /* 🔥 MUHIM */
+  background-repeat: no-repeat;
+}
