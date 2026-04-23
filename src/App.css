@@ -374,7 +374,7 @@ body {
 
 /* music click effect */
 .music.playing {
-  background: #040964;
+
   transform: scale(1.1);
 }
 
@@ -399,7 +399,7 @@ body {
 }
 
 .music.playing {
-  background: #040964;
+
   transform: scale(1.1);
 }
 .ring{
@@ -413,5 +413,5 @@ body {
   width: 200px;
   height: 269px;
   border-radius: 100px 100px 0 0;
-  border: 2px solid #3037b4;
+  border: 2px solid #040964;
 }
