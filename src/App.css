@@ -409,3 +409,9 @@ body {
   position: relative;
   top: 40px;
 }
+.bride{
+  width: 200px;
+  height: 269px;
+  border-radius: 100px 100px 0 0;
+  border: 2px solid #3037b4;
+}

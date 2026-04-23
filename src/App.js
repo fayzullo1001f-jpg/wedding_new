@@ -8,6 +8,7 @@ import pause from "./img/circle-pause-solid-full.svg";
 import cake from "./img/afec371b0d00-wedding-cake-t.webp";
 import restaurant from "./img/2774127.f80979f42a4b357703de1f25eaa02d87.jpg";
 import ring from "./img/sandy-millar-unsplash-1400x933.webp"
+import bride from "./img/1-couple-wedding-portraint-pond-pine-lake-ranch-683x1024.jpg"
 function App() {
     const [timeLeft, setTimeLeft] = useState("");
     const [isPlaying, setIsPlaying] = useState(false);
@@ -274,7 +275,7 @@ function App() {
                 <h1>Shaxzod & Marjona</h1>
                 <h2>Sizni kutamiz ❤️</h2>
                 <p>+998 99 123 45 67</p>
-
+                <img className="bride" src={bride} alt=""/>
             </motion.section>
 
         </div>
