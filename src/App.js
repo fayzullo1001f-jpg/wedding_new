@@ -273,9 +273,9 @@ function App() {
             <motion.section className="section sec" variants={fadeUp} initial="hidden" whileInView="show">
 
                 <h1>Shaxzod & Marjona</h1>
-                <h2>Sizni kutamiz ❤️</h2>
+
+                <img className="bride" src={bride} alt=""/> <h2>Sizni kutamiz ❤️</h2>
                 <p>+998 99 123 45 67</p>
-                <img className="bride" src={bride} alt=""/>
             </motion.section>
 
         </div>

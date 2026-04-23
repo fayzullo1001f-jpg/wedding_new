@@ -400,6 +400,7 @@ body {
 
 .music.playing {
 
+
   transform: scale(1.1);
 }
 .ring{
