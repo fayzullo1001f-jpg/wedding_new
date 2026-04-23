@@ -16,7 +16,7 @@ body {
     background: white;
 }
 
-/* HERO */
+
 .hero {
     height: 100vh;
     display: flex;
@@ -32,7 +32,6 @@ body {
     overflow: hidden;
 }
 
-/* 🔥 BLUR + DARK OVERLAY */
 .hero::before {
     content: "";
     position: absolute;
@@ -76,7 +75,7 @@ body {
     color: #aaa;
 }
 
-/* SECTION */
+
 .section {
     padding: 60px 25px;
     text-align: center;
@@ -94,14 +93,14 @@ body {
     color: #555;
 }
 
-/* TIMER */
+
 .timer {
     margin-top: 20px;
     font-size: 23px;
     color: #999;
 }
 
-/* MAP */
+
 .map {
     margin-top: 25px;
     padding: 20px;
@@ -115,7 +114,7 @@ body {
     background: #f3f1ee;
 }
 
-/* MOBILE */
+
 @media (max-width: 480px) {
     .hero h1 {
         font-size: 28px;
@@ -298,6 +297,7 @@ body {
 
 /* TIMELINE */ /* TIMELINE */
 .timeline {
+    width: 200px;
     margin-top: 20px;
     position: relative;
     padding-left: 20px;
@@ -305,11 +305,7 @@ body {
     top: 35px;
 }
 
-.ser {
-    position: relative;
-    top: 20px;
-    left: 25px;
-}
+
 
 .sec {
     background-image: url("https://i.pinimg.com/736x/fc/ac/93/fcac932456b1f8566b7b7ed873b5714a.jpg");
